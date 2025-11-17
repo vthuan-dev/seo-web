@@ -1,0 +1,118 @@
+{
+  "site": {
+    "name": "KhacDauNhanh.com",
+    "title": "Khắc dấu nhanh không giấy tờ - Lấy liền trong ngày",
+    "description": "Dịch vụ khắc dấu nhanh không cần giấy tờ, lấy liền trong ngày. Khắc dấu tròn công ty, dấu vuông, dấu chữ ký uy tín, giá rẻ tại TP.HCM.",
+    "keywords": "khắc dấu nhanh, khắc dấu không giấy tờ, làm dấu tròn công ty, khắc dấu lấy liền, dấu công ty"
+  },
+  "contact": {
+    "hotline": "[Số điện thoại]",
+    "zalo1": "[Số Zalo 1]",
+    "zalo2": "[Số Zalo 2]",
+    "address": "[Địa chỉ văn phòng]",
+    "workingHours": "Phục vụ 24/7"
+  },
+  "images": {
+    "hero": "/image/khacdau.png",
+    "service": "/image/khacdau.png"
+  },
+  "hero": {
+    "title": "Khắc dấu nhanh không giấy tờ - Lấy liền trong ngày tại TP.HCM",
+    "rating": {
+      "score": 5.0,
+      "total": 50
+    }
+  },
+  "intro": {
+    "text": "Rất nhiều khách hàng không muốn dành quá nhiều thời gian cho các thủ tục và giấy tờ phức tạp. Do đó, nhiều đơn vị hiện đang cung cấp dịch vụ khắc dấu mà không yêu cầu giấy tờ. Tuy nhiên, việc này thường đi kèm với nguy cơ vi phạm pháp luật, khi mà một số đơn vị chỉ tập trung vào lợi nhuận mà không chú trọng đến chất lượng của con dấu."
+  },
+  "tableOfContents": [
+    {
+      "id": "lam-dau",
+      "title": "Làm dấu tròn công ty không cần giấy tờ mới nhất"
+    },
+    {
+      "id": "loi-ich",
+      "title": "Lợi ích của làm dấu tròn công ty không cần giấy tờ"
+    },
+    {
+      "id": "tai-sao",
+      "title": "Tại Sao Nên Chọn Khắc Dấu Lấy Liền"
+    },
+    {
+      "id": "dich-vu",
+      "title": "Dịch vụ của chúng tôi"
+    },
+    {
+      "id": "lien-he",
+      "title": "Thông tin liên hệ"
+    }
+  ],
+  "sections": {
+    "lamDau": {
+      "title": "Làm dấu tròn công ty không cần giấy tờ mới nhất",
+      "content": [
+        "Nhận khắc dấu mà không cần đầy đủ giấy tờ là một thực tế phổ biến, nhưng cần phải cảnh báo về việc một số cơ sở có thể tăng giá khắc dấu để tối đa hóa lợi nhuận của họ. Vì vậy, nếu bạn đang cân nhắc khắc dấu cho công ty của mình mà không muốn bị cuốn vào thủ tục phức tạp, quan trọng là bạn hiểu rõ về loại giấy tờ cần thiết.",
+        "Để giải đáp mọi thắc mắc của bạn về việc khắc dấu, làm dấu tròn công ty không cần giấy tờ, chúng tôi sẽ cung cấp thông tin chi tiết và hữu ích về vấn đề này."
+      ]
+    },
+    "loiIch": {
+      "title": "Lợi ích của làm dấu tròn công ty không cần giấy tờ",
+      "intro": "Quyết định khắc dấu cho công ty mà không yêu cầu giấy tờ mang lại nhiều lợi ích đáng kể, giúp quá trình này trở nên nhanh chóng và thuận tiện hơn. Dưới đây là những ưu điểm của việc thực hiện thủ tục này một cách dễ dàng:",
+      "features": [
+        {
+          "icon": "FaClock",
+          "title": "Thủ tục nhanh chóng",
+          "description": "Quá trình khắc dấu diễn ra nhanh chóng mà không đòi hỏi phải mang theo đủ loại giấy tờ liên quan. Bạn có thể nhận ngay con dấu của mình mà không gặp phải sự phức tạp từ việc chuẩn bị giấy tờ trước."
+        },
+        {
+          "icon": "FaCheckCircle",
+          "title": "Tiết kiệm thời gian",
+          "description": "Việc khắc dấu mà không cần giấy tờ giúp bạn tiết kiệm thời gian đáng kể. Bạn không phải bận tâm về các thủ tục giấy tờ phức tạp, từ đó tập trung vào công việc chính một cách hiệu quả hơn."
+        },
+        {
+          "icon": "FaShieldAlt",
+          "title": "Hiệu quả và tiện ích",
+          "description": "Quá trình khắc dấu tròn mà không yêu cầu giấy tờ không chỉ đơn giản là hiệu quả mà còn tiện ích. Bạn sẽ không gặp phải các bước thêm vào của thủ tục giấy tờ, từ đó giữ cho quy trình làm dấu trở nên linh hoạt và dễ dàng hơn."
+        }
+      ]
+    },
+    "taiSao": {
+      "title": "Tại Sao Nên Chọn Khắc Dấu Lấy Liền",
+      "intro": "Với những ưu điểm này, việc chọn lựa khắc dấu mà không cần giấy tờ trở thành lựa chọn thông minh cho những người muốn tiết kiệm thời gian và nỗ lực trong quá trình làm dấu cho doanh nghiệp của mình.",
+      "items": [
+        {
+          "label": "Nhanh chóng:",
+          "description": "Nhận dấu trong vòng vài giờ, thậm chí ngay lập tức"
+        },
+        {
+          "label": "Tiện lợi:",
+          "description": "Không cần mang theo nhiều giấy tờ phức tạp"
+        },
+        {
+          "label": "Chất lượng:",
+          "description": "Đảm bảo chất lượng dấu sắc nét, bền đẹp"
+        },
+        {
+          "label": "Giá cả:",
+          "description": "Giá cả hợp lý, cạnh tranh nhất thị trường"
+        }
+      ]
+    },
+    "dichVu": {
+      "title": "Dịch vụ của chúng tôi",
+      "intro": "Chúng tôi cung cấp đa dạng các loại dấu với chất lượng cao:",
+      "services": [
+        "Khắc dấu tròn công ty không cần giấy tờ",
+        "Khắc dấu vuông, dấu chữ nhật",
+        "Khắc dấu chữ ký cá nhân",
+        "Khắc dấu logo, dấu hình",
+        "Và nhiều loại dấu khác theo yêu cầu"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Cần khắc dấu gấp?",
+    "subtitle": "Liên hệ ngay để được tư vấn và nhận dấu nhanh nhất"
+  }
+}

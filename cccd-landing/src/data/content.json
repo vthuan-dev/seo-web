@@ -1,0 +1,140 @@
+{
+  "site": {
+    "name": "Dichvucancuoccongdan2.com",
+    "title": "Dịch vụ làm thẻ Căn Cước Công Dân - CCCD gắn chip nhanh",
+    "description": "Dịch vụ làm căn cước công dân (CCCD) gắn chip nhanh chóng, uy tín. Hỗ trợ cấp mới, đổi mới, đổi từ CMND sang CCCD. Phục vụ 24/7.",
+    "keywords": "CCCD, căn cước công dân, làm CCCD nhanh, đổi CCCD, cấp CCCD, CCCD gắn chip"
+  },
+  "contact": {
+    "hotline": "[Số điện thoại]",
+    "zalo1": "[Số Zalo 1]",
+    "zalo2": "[Số Zalo 2]",
+    "address": "3A73/1 Ấp 3, Phạm Văn Hai, Tân Vĩnh Lộc, TP. Hồ Chí Minh",
+    "workingHours": "Phục vụ 24/7"
+  },
+  "images": {
+    "hero": "/image/cccd2.png",
+    "service": "/image/cccd1.png"
+  },
+  "hero": {
+    "title": "Dịch vụ làm thẻ căn cước công dân CCCD gắn chip nhanh chóng tại TP.HCM",
+    "rating": {
+      "score": 5.0,
+      "total": 40
+    }
+  },
+  "intro": {
+    "text": "Căn cước công dân (CCCD) là một loại giấy tờ tùy thân của công dân Việt Nam, dùng để chứng minh nhân thân và được cơ quan công an cấp. Thẻ căn cước chứa các thông tin cơ bản của một người như thông tin nhân thân, lai lịch, nhân dạng và thông tin sinh trắc học (vân tay, mống mắt, ảnh khuôn mặt) được tích hợp. Hiện nay, CCCD chủ yếu là thẻ căn cước công dân gắn chip, có chip điện tử lưu trữ thông tin, thay thế cho CMND và CCCD mã vạch cũ."
+  },
+  "tableOfContents": [
+    {
+      "id": "thong-tin",
+      "title": "Thông tin trên thẻ căn cước"
+    },
+    {
+      "id": "y-nghia",
+      "title": "Ý nghĩa và vai trò"
+    },
+    {
+      "id": "day-so",
+      "title": "Ý nghĩa dãy số trên thẻ"
+    },
+    {
+      "id": "dich-vu",
+      "title": "Dịch vụ của chúng tôi"
+    },
+    {
+      "id": "lien-he",
+      "title": "Thông tin liên hệ"
+    }
+  ],
+  "sections": {
+    "thongTin": {
+      "title": "Thông tin trên thẻ căn cước",
+      "cards": [
+        {
+          "title": "Thông tin in trên thẻ",
+          "items": [
+            "Số định danh cá nhân",
+            "Họ tên",
+            "Ngày sinh",
+            "Giới tính",
+            "Nơi đăng ký khai sinh",
+            "Quốc tịch",
+            "Nơi cư trú",
+            "Ngày cấp thẻ và nơi cấp"
+          ]
+        },
+        {
+          "title": "Thông tin lưu trữ trong chip",
+          "items": [
+            "Ảnh khuôn mặt",
+            "Vân tay",
+            "Mống mắt",
+            "Nhóm máu",
+            "CMND cũ (nếu có)",
+            "Thông tin về cha mẹ",
+            "Thông tin vợ chồng, con",
+            "Người đại diện"
+          ]
+        }
+      ]
+    },
+    "yNghia": {
+      "title": "Ý nghĩa và vai trò",
+      "features": [
+        {
+          "icon": "FaIdCard",
+          "title": "Giấy tờ tùy thân chính",
+          "description": "Là giấy tờ quan trọng để chứng minh nhân thân trong các giao dịch và thủ tục hành chính"
+        },
+        {
+          "icon": "FaShieldAlt",
+          "title": "Xác thực danh tính",
+          "description": "Cho phép xác minh danh tính nhanh chóng và an toàn nhờ có chip điện tử"
+        },
+        {
+          "icon": "FaCheckCircle",
+          "title": "Thuận tiện cho công dân",
+          "description": "Giúp thực hiện nhiều giao dịch, thủ tục hành chính dễ dàng hơn"
+        }
+      ]
+    },
+    "daySo": {
+      "title": "Ý nghĩa dãy số trên thẻ",
+      "intro": "Dãy số gồm 12 chữ số là số định danh cá nhân, được gắn với mỗi công dân từ khi sinh ra cho đến khi qua đời và không thay đổi.",
+      "items": [
+        {
+          "label": "3 số đầu:",
+          "description": "Mã tỉnh, thành phố nơi đăng ký khai sinh"
+        },
+        {
+          "label": "1 số tiếp theo:",
+          "description": "Mã thế kỷ và giới tính"
+        },
+        {
+          "label": "2 số kế tiếp:",
+          "description": "Mã năm sinh (hai số cuối của năm sinh)"
+        },
+        {
+          "label": "6 số cuối:",
+          "description": "Khoảng số ngẫu nhiên"
+        }
+      ]
+    },
+    "dichVu": {
+      "title": "Dịch vụ của chúng tôi",
+      "intro": "Nay bên tôi Dichvucancuoccongdan2.com hỗ trợ quý bà con các dịch vụ như sau:",
+      "services": [
+        "Cấp mới căn cước công dân nhanh",
+        "Đổi mới căn cước công dân",
+        "Đổi từ chứng minh nhân dân sang căn cước công dân",
+        "Và nhiều dịch vụ về căn cước công dân khác"
+      ]
+    }
+  },
+  "cta": {
+    "title": "Quý khách hàng đang có nhu cầu?",
+    "subtitle": "Vui lòng liên hệ để được đội ngũ nhân viên tư vấn rõ hơn"
+  }
+}

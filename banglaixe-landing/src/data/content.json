@@ -1,0 +1,108 @@
+{
+  "site": {
+    "name": "DICHVUBANGLAIXE1.COM",
+    "title": "Dịch vụ Bằng Lái Xe - Cấp nhanh không cần thi",
+    "description": "Dịch vụ cấp bằng lái xe máy không cần thi, cấp lại bằng lái bị mất, cấp mới bằng hết hạn. Thời gian 1-3 ngày. Phục vụ 24/7 tại TP.HCM.",
+    "keywords": "bằng lái xe, cấp bằng lái xe, bằng lái xe máy, cấp lại bằng lái, bằng lái hết hạn"
+  },
+  "contact": {
+    "hotline": "[Số điện thoại]",
+    "zalo1": "[Số Zalo 1]",
+    "zalo2": "[Số Zalo 2]",
+    "address": "3A73/1 Ấp 3, Phạm Văn Hai, Tân Vĩnh Lộc, Thành Phố Hồ Chí Minh",
+    "workingHours": "Phục vụ 24/7"
+  },
+  "images": {
+    "hero": "/image/blx.png",
+    "service": "/image/blx.png",
+    "documents": "/image/blx.png"
+  },
+  "hero": {
+    "title": "Dịch vụ cấp Bằng Lái Xe nhanh không cần thi - Hoàn thành 1-3 ngày",
+    "rating": {
+      "score": 5.0,
+      "total": 45
+    }
+  },
+  "intro": {
+    "text": "Nhằm giúp quý khách hàng, hôm nay DICHVUBANGLAIXE1.COM cung cấp tất cả các dịch vụ về Bằng Lái Xe cho khách hàng. Chúng tôi cam kết thời gian hoàn thành nhanh chóng từ 1-3 ngày tùy trường hợp quý khách hàng mắc phải."
+  },
+  "tableOfContents": [
+    {
+      "id": "dich-vu",
+      "title": "Dịch vụ của chúng tôi"
+    },
+    {
+      "id": "quy-dinh",
+      "title": "Quy định xử phạt khi không có GPLX"
+    },
+    {
+      "id": "xe-may",
+      "title": "Mức phạt đối với xe máy"
+    },
+    {
+      "id": "oto",
+      "title": "Mức phạt đối với ô tô"
+    },
+    {
+      "id": "lien-he",
+      "title": "Thông tin liên hệ"
+    }
+  ],
+  "sections": {
+    "dichVu": {
+      "title": "Dịch vụ của chúng tôi",
+      "intro": "DICHVUBANGLAIXE1.COM cung cấp tất cả các dịch vụ về Bằng Lái Xe:",
+      "services": [
+        "Cấp bằng lái xe máy không cần thi",
+        "Cấp lại bằng lái xe bị mất",
+        "Cấp mới bằng lái xe hết hạn",
+        "Thời gian hoàn thành từ 1-3 ngày"
+      ]
+    },
+    "quyDinh": {
+      "title": "Quy định xử phạt khi tham gia giao thông không có giấy phép lái xe",
+      "content": [
+        "Theo Nghị định 168/2024/NĐ-CP có hiệu lực từ ngày 1/1/2025, mức phạt cho hành vi không có giấy phép lái xe (GPLX) như sau: xe máy bị phạt tiền từ 2.000.000 - 8.000.000 đồng, còn xe ô tô bị phạt tiền từ 18.000.000 - 20.000.000 đồng."
+      ]
+    },
+    "xeMay": {
+      "title": "Mức phạt đối với xe máy",
+      "items": [
+        {
+          "label": "Không có GPLX - Xe dưới 125cc:",
+          "description": "Phạt tiền từ 2.000.000 - 4.000.000 đồng"
+        },
+        {
+          "label": "Không có GPLX - Xe từ 125cc trở lên:",
+          "description": "Phạt tiền từ 6.000.000 - 8.000.000 đồng"
+        },
+        {
+          "label": "Không mang theo GPLX:",
+          "description": "Phạt tiền từ 200.000 - 300.000 đồng"
+        }
+      ]
+    },
+    "oto": {
+      "title": "Mức phạt đối với ô tô",
+      "items": [
+        {
+          "label": "Không có GPLX:",
+          "description": "Phạt tiền từ 18.000.000 - 20.000.000 đồng"
+        },
+        {
+          "label": "Không mang theo GPLX:",
+          "description": "Phạt tiền từ 300.000 - 400.000 đồng"
+        },
+        {
+          "label": "Hình phạt bổ sung:",
+          "description": "Người vi phạm có thể bị tước quyền sử dụng GPLX (nếu có) hoặc tạm giữ phương tiện"
+        }
+      ]
+    }
+  },
+  "cta": {
+    "title": "Cần làm bằng lái xe gấp?",
+    "subtitle": "Liên hệ ngay để được tư vấn và hỗ trợ nhanh nhất"
+  }
+}
