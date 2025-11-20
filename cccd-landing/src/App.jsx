@@ -31,13 +31,13 @@ function App() {
         <meta name="keywords" content={site.keywords} />
         <meta name="author" content={site.name} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://dichvucancuoccongdan2.com" />
+        <link rel="canonical" href="https://dichvucancuoccongdan1.com" />
         
         {/* Open Graph */}  
         <meta property="og:title" content={site.title} />
         <meta property="og:description" content={site.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dichvucancuoccongdan2.com" />
+        <meta property="og:url" content="https://dichvucancuoccongdan1.com" />
         <meta property="og:image" content={images.hero} />
         <meta property="og:locale" content="vi_VN" />
         <meta property="og:site_name" content={site.name} />
@@ -80,7 +80,7 @@ function App() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Trang chủ",
-                "item": "https://dichvucancuoccongdan2.com"
+                "item": "https://dichvucancuoccongdan1.com"
               },
               {
                 "@type": "ListItem",
