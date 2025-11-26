@@ -50,3 +50,4 @@ Khi setup Gmail service trong EmailJS, bạn gặp lỗi:
 1. Copy **Service ID** (ví dụ: `service_62rurp8`)
 2. Tiếp tục các bước setup còn lại trong file `EMAILJS_QUICK_SETUP.md`
 
+
