@@ -14,6 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .logo {
@@ -46,6 +47,31 @@
   font-weight: 600;
   color: #dc2626;
   font-size: 1.1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.hotline:hover {
+  color: #b91c1c;
+}
+
+.zalo-button {
+  background: #0068ff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.zalo-button:hover {
+  background: #0052cc;
+  transform: translateY(-2px);
 }
 
 .cta-button {
@@ -69,7 +95,13 @@
   padding: 0 1.5rem;
   display: grid;
   grid-template-columns: 1fr 320px;
-  gap: 2rem;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .main-container {
+    gap: 3rem;
+  }
 }
 
 /* Content Area */
@@ -370,6 +402,17 @@
   color: #2563eb;
 }
 
+.cta-btn.zalo-btn {
+  background: #0068ff;
+  border-color: #0068ff;
+}
+
+.cta-btn.zalo-btn:hover {
+  background: #0052cc;
+  border-color: #0052cc;
+  color: white;
+}
+
 /* Sidebar */
 .sidebar {
   position: sticky;
@@ -408,6 +451,10 @@
   font-size: 1.25rem;
   color: #2563eb;
   margin-top: 0.25rem;
+}
+
+.contact-icon.zalo-icon {
+  color: #0068ff;
 }
 
 .contact-item strong {
@@ -503,6 +550,42 @@
   font-size: 0.9rem;
 }
 
+/* Floating Zalo Button */
+.floating-zalo {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: #0068ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 104, 255, 0.4);
+  z-index: 999;
+  transition: all 0.3s;
+  text-decoration: none;
+  animation: pulse 2s infinite;
+}
+
+.floating-zalo:hover {
+  background: #0052cc;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 104, 255, 0.6);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(0, 104, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(0, 104, 255, 0.7);
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .main-container {
@@ -521,6 +604,14 @@
 
   .header-cta {
     flex-direction: column;
+  }
+
+  .floating-zalo {
+    width: 55px;
+    height: 55px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.75rem;
   }
 
   .page-title {

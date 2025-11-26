@@ -1,4 +1,5 @@
 import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { useState } from 'react';
 import { 
   FaPhone, 
   FaMapMarkerAlt, 
@@ -7,7 +8,9 @@ import {
   FaIdCard,
   FaExchangeAlt,
   FaCheckCircle,
-  FaShieldAlt
+  FaShieldAlt,
+  FaUser,
+  FaCheck
 } from 'react-icons/fa';
 import { SiZalo } from 'react-icons/si';
 import './App.css';
@@ -22,6 +25,47 @@ const iconMap = {
 
 function App() {
   const { site, contact, images, hero, intro, tableOfContents, sections, cta } = contentData;
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    zalo: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Gửi email qua mailto
+    const subject = encodeURIComponent(`Đăng ký tư vấn từ ${site.name}`);
+    const body = encodeURIComponent(
+      `Thông tin đăng ký tư vấn:\n\n` +
+      `Họ tên: ${formData.name}\n` +
+      `Số điện thoại: ${formData.phone}\n` +
+      `Zalo: ${formData.zalo}\n\n` +
+      `Thời gian: ${new Date().toLocaleString('vi-VN')}`
+    );
+    
+    const mailtoLink = `mailto:Nxuanhoang55@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+
+    // Reset form sau 1 giây
+    setTimeout(() => {
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+      setFormData({ name: '', phone: '', zalo: '' });
+      setTimeout(() => setIsSubmitted(false), 5000);
+    }, 500);
+  };
 
   return (
     <HelmetProvider>
@@ -100,11 +144,15 @@ function App() {
             <span className="logo-highlight">CCCD</span>
           </div>
           <div className="header-cta">
-            <span className="hotline">
+            <a href={`tel:${contact.hotline}`} className="hotline">
               <FaPhone style={{ fontSize: '0.9rem', marginRight: '0.5rem' }} />
               Hotline: {contact.hotline}
-            </span>
-            <button className="cta-button">ĐĂNG KÝ TƯ VẤN</button>
+            </a>
+            {/* <a href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="zalo-button">
+              <SiZalo style={{ fontSize: '1.2rem', marginRight: '0.5rem' }} />
+              Chat Zalo
+            </a> */}
+            {/* <button className="cta-button">ĐĂNG KÝ TƯ VẤN</button> */}
           </div>
         </div>
       </header>
@@ -234,6 +282,81 @@ function App() {
             </div>
           </section>
 
+          {/* Registration Form */}
+          <section className="registration-form-section">
+            <div className="form-container">
+              <div className="form-header">
+                <h2>Đăng ký tư vấn miễn phí</h2>
+                <p>Điền thông tin để được tư vấn nhanh chóng</p>
+              </div>
+              
+              {isSubmitted ? (
+                <div className="form-success">
+                  <FaCheck className="success-icon" />
+                  <h3>Cảm ơn bạn đã đăng ký!</h3>
+                  <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="registration-form">
+                  <div className="form-group">
+                    <label htmlFor="name">
+                      <FaUser className="input-icon" />
+                      Họ và tên *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Nhập họ và tên của bạn"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="phone">
+                      <FaPhone className="input-icon" />
+                      Số điện thoại *
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Nhập số điện thoại"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="zalo">
+                      <SiZalo className="input-icon" />
+                      Số Zalo
+                    </label>
+                    <input
+                      type="text"
+                      id="zalo"
+                      name="zalo"
+                      value={formData.zalo}
+                      onChange={handleInputChange}
+                      placeholder="Nhập số Zalo (nếu có)"
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="submit-btn"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Đang gửi...' : 'ĐĂNG KÝ NGAY'}
+                  </button>
+                </form>
+              )}
+            </div>
+          </section>
+
           {/* CTA Section */}
           <div className="cta-section">
             <h3>{cta.title}</h3>
@@ -242,10 +365,10 @@ function App() {
               <a href={`tel:${contact.hotline}`} className="cta-btn">
                 <FaPhone /> Gọi ngay Hotline
               </a>
-              <a href="#" className="cta-btn secondary">
+              <a href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="cta-btn secondary zalo-btn">
                 <SiZalo /> Chat Zalo 1
               </a>
-              <a href="#" className="cta-btn secondary">
+              <a href={`https://zalo.me/${contact.zalo2.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="cta-btn secondary zalo-btn">
                 <SiZalo /> Chat Zalo 2
               </a>
             </div>
@@ -265,17 +388,17 @@ function App() {
                 </div>
               </div>
               <div className="contact-item">
-                <SiZalo className="contact-icon" />
+                <SiZalo className="contact-icon zalo-icon" />
                 <div>
                   <strong>Zalo 1:</strong>
-                  <a href="#">{contact.zalo1}</a>
+                  <a href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer">{contact.zalo1}</a>
                 </div>
               </div>
               <div className="contact-item">
-                <SiZalo className="contact-icon" />
+                <SiZalo className="contact-icon zalo-icon" />
                 <div>
                   <strong>Zalo 2:</strong>
-                  <a href="#">{contact.zalo2}</a>
+                  <a href={`https://zalo.me/${contact.zalo2.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer">{contact.zalo2}</a>
                 </div>
               </div>
               <div className="contact-item">
@@ -330,6 +453,17 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Floating Zalo Button */}
+      <a 
+        href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="floating-zalo"
+        title="Chat Zalo"
+      >
+        <SiZalo />
+      </a>
     </HelmetProvider>
   );
 }

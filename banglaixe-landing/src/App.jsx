@@ -99,6 +99,17 @@ function App() {
             <span className="logo-main">Bằng lái</span>
             <span className="logo-highlight">XE</span>
           </div>
+          <div className="header-cta">
+            <a href={`tel:${contact.hotline}`} className="hotline">
+              <FaPhone style={{ fontSize: '0.9rem', marginRight: '0.5rem' }} />
+              Hotline: {contact.hotline}
+            </a>
+            {/* <a href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="zalo-button">
+              <SiZalo style={{ fontSize: '1.2rem', marginRight: '0.5rem' }} />
+              Chat Zalo
+            </a> */}
+            {/* <button className="cta-button">ĐĂNG KÝ TƯ VẤN</button> */}
+          </div>
         </div>
       </header>
 
@@ -225,10 +236,10 @@ function App() {
               <a href={`tel:${contact.hotline}`} className="cta-btn">
                 <FaPhone /> Gọi ngay Hotline
               </a>
-              <a href="#" className="cta-btn secondary">
+              <a href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="cta-btn secondary zalo-btn">
                 <SiZalo /> Chat Zalo 1
               </a>
-              <a href="#" className="cta-btn secondary">
+              <a href={`https://zalo.me/${contact.zalo2.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer" className="cta-btn secondary zalo-btn">
                 <SiZalo /> Chat Zalo 2
               </a>
             </div>
@@ -248,17 +259,17 @@ function App() {
                 </div>
               </div>
               <div className="contact-item">
-                <SiZalo className="contact-icon" />
+                <SiZalo className="contact-icon zalo-icon" />
                 <div>
                   <strong>Zalo 1:</strong>
-                  <a href="#">{contact.zalo1}</a>
+                  <a href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer">{contact.zalo1}</a>
                 </div>
               </div>
               <div className="contact-item">
-                <SiZalo className="contact-icon" />
+                <SiZalo className="contact-icon zalo-icon" />
                 <div>
                   <strong>Zalo 2:</strong>
-                  <a href="#">{contact.zalo2}</a>
+                  <a href={`https://zalo.me/${contact.zalo2.replace(/\s/g, '')}`} target="_blank" rel="noopener noreferrer">{contact.zalo2}</a>
                 </div>
               </div>
               <div className="contact-item">
@@ -313,6 +324,17 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Floating Zalo Button */}
+      <a 
+        href={`https://zalo.me/${contact.zalo1.replace(/\s/g, '')}`} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="floating-zalo"
+        title="Chat Zalo"
+      >
+        <SiZalo />
+      </a>
     </HelmetProvider>
   );
 }
