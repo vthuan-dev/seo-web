@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://khacdaunhanh.com/sitemap.xml
+Sitemap: https://khacdautron1.com/sitemap.xml
