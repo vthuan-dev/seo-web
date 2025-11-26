@@ -1,5 +1,6 @@
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   FaPhone, 
   FaMapMarkerAlt, 
@@ -16,6 +17,19 @@ import { SiZalo } from 'react-icons/si';
 import './App.css';
 import contentData from './data/content.json';
 
+// EmailJS Configuration - Chỉ cần config 3 giá trị này
+const EMAILJS_CONFIG = {
+  SERVICE_ID: 'service_prixmbb',
+  TEMPLATE_ID: 'template_setwyj9',
+  PUBLIC_KEY: 'NMP-KVqcdLVpHflIr'
+};
+
+// Email nhận form (email người dùng gửi đến)
+const RECEIVER_EMAIL = 'Nxuanhoang55@gmail.com';
+
+// Email gửi (email dùng để gửi form - cần App Password của email này)
+const SENDER_EMAIL = 'vthuanng.it@gmail.com';
+
 // Icon mapping
 const iconMap = {
   FaIdCard: FaIdCard,
@@ -26,6 +40,84 @@ const iconMap = {
 
 function App() {
   const { site, contact, images, hero, intro, tableOfContents, sections, cta } = contentData;
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    zalo: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Kiểm tra xem đã config EmailJS chưa
+    const isConfigured = 
+      EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID' &&
+      EMAILJS_CONFIG.TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
+      EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+
+    if (isConfigured) {
+      // Gửi email qua EmailJS với Gmail SMTP
+      try {
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        
+        const templateParams = {
+          to_email: RECEIVER_EMAIL,
+          from_name: formData.name,
+          phone: formData.phone,
+          zalo: formData.zalo || 'Không có',
+          site_name: site.name,
+          date: new Date().toLocaleString('vi-VN'),
+          message: `Thông tin đăng ký tư vấn:\n\nHọ tên: ${formData.name}\nSố điện thoại: ${formData.phone}\nZalo: ${formData.zalo || 'Không có'}\nWebsite: ${site.name}\nThời gian: ${new Date().toLocaleString('vi-VN')}`
+        };
+
+        await emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID,
+          templateParams
+        );
+
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+        setFormData({ name: '', phone: '', zalo: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        setIsSubmitting(false);
+        alert('Có lỗi xảy ra khi gửi email. Vui lòng thử lại!');
+      }
+    } else {
+      // Fallback: Gửi email qua mailto nếu chưa config
+      const subject = encodeURIComponent(`Đăng ký tư vấn từ ${site.name}`);
+      const body = encodeURIComponent(
+        `Thông tin đăng ký tư vấn:\n\n` +
+        `Họ tên: ${formData.name}\n` +
+        `Số điện thoại: ${formData.phone}\n` +
+        `Zalo: ${formData.zalo}\n\n` +
+        `Thời gian: ${new Date().toLocaleString('vi-VN')}`
+      );
+      
+      const mailtoLink = `mailto:${RECEIVER_EMAIL}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+
+      setTimeout(() => {
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+        setFormData({ name: '', phone: '', zalo: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      }, 500);
+    }
+  };
 
   return (
     <HelmetProvider>
@@ -235,6 +327,81 @@ function App() {
                   <li key={index}>{service}</li>
                 ))}
               </ul>
+            </div>
+          </section>
+
+          {/* Registration Form */}
+          <section className="registration-form-section">
+            <div className="form-container">
+              <div className="form-header">
+                <h2>Đăng ký tư vấn miễn phí</h2>
+                <p>Điền thông tin để được tư vấn nhanh chóng</p>
+              </div>
+              
+              {isSubmitted ? (
+                <div className="form-success">
+                  <FaCheck className="success-icon" />
+                  <h3>Cảm ơn bạn đã đăng ký!</h3>
+                  <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="registration-form">
+                  <div className="form-group">
+                    <label htmlFor="name">
+                      <FaUser className="input-icon" />
+                      Họ và tên *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Nhập họ và tên của bạn"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="phone">
+                      <FaPhone className="input-icon" />
+                      Số điện thoại *
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="Nhập số điện thoại"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="zalo">
+                      <SiZalo className="input-icon" />
+                      Số Zalo
+                    </label>
+                    <input
+                      type="text"
+                      id="zalo"
+                      name="zalo"
+                      value={formData.zalo}
+                      onChange={handleInputChange}
+                      placeholder="Nhập số Zalo (nếu có)"
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="submit-btn"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Đang gửi...' : 'ĐĂNG KÝ NGAY'}
+                  </button>
+                </form>
+              )}
             </div>
           </section>
 

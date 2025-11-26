@@ -1,5 +1,6 @@
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   FaPhone, 
   FaMapMarkerAlt, 
@@ -15,6 +16,19 @@ import {
 import { SiZalo } from 'react-icons/si';
 import './App.css';
 import contentData from './data/content.json';
+
+// EmailJS Configuration - Chỉ cần config 3 giá trị này
+const EMAILJS_CONFIG = {
+  SERVICE_ID: 'service_prixmbb',
+  TEMPLATE_ID: 'template_setwyj9',
+  PUBLIC_KEY: 'NMP-KVqcdLVpHflIr'
+};
+
+// Email nhận form (email người dùng gửi đến)
+const RECEIVER_EMAIL = 'Nxuanhoang55@gmail.com';
+
+// Email gửi (email dùng để gửi form - cần App Password của email này)
+const SENDER_EMAIL = 'vthuanng.it@gmail.com';
 
 // Icon mapping
 const iconMap = {
@@ -45,26 +59,63 @@ function App() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Gửi email qua mailto
-    const subject = encodeURIComponent(`Đăng ký tư vấn từ ${site.name}`);
-    const body = encodeURIComponent(
-      `Thông tin đăng ký tư vấn:\n\n` +
-      `Họ tên: ${formData.name}\n` +
-      `Số điện thoại: ${formData.phone}\n` +
-      `Zalo: ${formData.zalo}\n\n` +
-      `Thời gian: ${new Date().toLocaleString('vi-VN')}`
-    );
-    
-    const mailtoLink = `mailto:Nxuanhoang55@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink;
+    // Kiểm tra xem đã config EmailJS chưa
+    const isConfigured = 
+      EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID' &&
+      EMAILJS_CONFIG.TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
+      EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
 
-    // Reset form sau 1 giây
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setIsSubmitting(false);
-      setFormData({ name: '', phone: '', zalo: '' });
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 500);
+    if (isConfigured) {
+      // Gửi email qua EmailJS với Gmail SMTP
+      try {
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        
+        const templateParams = {
+          to_email: RECEIVER_EMAIL,
+          from_name: formData.name,
+          phone: formData.phone,
+          zalo: formData.zalo || 'Không có',
+          site_name: site.name,
+          date: new Date().toLocaleString('vi-VN'),
+          message: `Thông tin đăng ký tư vấn:\n\nHọ tên: ${formData.name}\nSố điện thoại: ${formData.phone}\nZalo: ${formData.zalo || 'Không có'}\nWebsite: ${site.name}\nThời gian: ${new Date().toLocaleString('vi-VN')}`
+        };
+
+        await emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID,
+          templateParams
+        );
+
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+        setFormData({ name: '', phone: '', zalo: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        setIsSubmitting(false);
+        alert('Có lỗi xảy ra khi gửi email. Vui lòng thử lại!');
+      }
+    } else {
+      // Fallback: Gửi email qua mailto nếu chưa config
+      const subject = encodeURIComponent(`Đăng ký tư vấn từ ${site.name}`);
+      const body = encodeURIComponent(
+        `Thông tin đăng ký tư vấn:\n\n` +
+        `Họ tên: ${formData.name}\n` +
+        `Số điện thoại: ${formData.phone}\n` +
+        `Zalo: ${formData.zalo}\n\n` +
+        `Thời gian: ${new Date().toLocaleString('vi-VN')}`
+      );
+      
+      const mailtoLink = `mailto:${RECEIVER_EMAIL}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+
+      setTimeout(() => {
+        setIsSubmitted(true);
+        setIsSubmitting(false);
+        setFormData({ name: '', phone: '', zalo: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      }, 500);
+    }
   };
 
   return (
