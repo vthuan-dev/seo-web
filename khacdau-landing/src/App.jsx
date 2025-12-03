@@ -11,7 +11,9 @@ import {
   FaCheckCircle,
   FaShieldAlt,
   FaUser,
-  FaCheck
+  FaCheck,
+  FaBolt,
+  FaPhoneAlt
 } from 'react-icons/fa';
 import { SiZalo } from 'react-icons/si';
 import './App.css';
@@ -208,6 +210,49 @@ function App() {
           </div>
         </div>
       </header>
+
+      {/* Promo Banner */}
+      <section className="promo-strip">
+        <div className="promo-content">
+          <div className="promo-price">
+            <span className="price-label">Giá trọn gói</span>
+            <div className="price-value">
+              <span className="currency">Chỉ từ</span>
+              <span className="number">500K</span>
+            </div>
+            <p>Khắc dấu tròn công ty - Lấy liền</p>
+          </div>
+
+          <div className="promo-features">
+            <div className="promo-item">
+              <div className="promo-icon hot">
+                <FaBolt />
+              </div>
+              <div>
+                <strong>Lấy liền 30-60 phút</strong>
+                <p>Giao tận nơi nội thành</p>
+              </div>
+            </div>
+            <div className="promo-item">
+              <div className="promo-icon safe">
+                <FaShieldAlt />
+              </div>
+              <div>
+                <strong>Bảo hành mực 12 tháng</strong>
+                <p>Miễn phí chỉnh sửa nội dung</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="promo-cta">
+            <a href={`tel:${contact.hotline}`} className="promo-call">
+              <FaPhoneAlt />
+              Gọi ngay {contact.hotline}
+            </a>
+            <small>Đội ngũ tư vấn trực 24/7 - Có mặt trong 15 phút</small>
+          </div>
+        </div>
+      </section>
 
       {/* Main Content */}
       <div className="main-container">
