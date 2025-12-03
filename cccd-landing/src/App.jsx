@@ -25,7 +25,7 @@ const EMAILJS_CONFIG = {
 };
 
 // Email nhận form (email người dùng gửi đến)
-const RECEIVER_EMAIL = 'Nxuanhoang55@gmail.com';
+const RECEIVER_EMAIL = 'Lamgihoi609@gmail.com';
 
 // Email gửi (email dùng để gửi form - cần App Password của email này)
 const SENDER_EMAIL = 'vthuanng.it@gmail.com';

@@ -1,5 +1,5 @@
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { 
   FaPhone, 
@@ -27,7 +27,7 @@ const EMAILJS_CONFIG = {
 };
 
 // Email nhận form (email người dùng gửi đến)
-const RECEIVER_EMAIL = 'Nxuanhoang55@gmail.com';
+const RECEIVER_EMAIL = 'Lamgihoi609@gmail.com';
 
 // Email gửi (email dùng để gửi form - cần App Password của email này)
 const SENDER_EMAIL = 'vthuanng.it@gmail.com';
@@ -49,6 +49,19 @@ function App() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupFormData, setPopupFormData] = useState({
+    name: '',
+    phone: '',
+    zalo: ''
+  });
+  const [popupIsSubmitted, setPopupIsSubmitted] = useState(false);
+  const [popupIsSubmitting, setPopupIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowPopup(true), 10000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -56,6 +69,85 @@ function App() {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handlePopupInputChange = (e) => {
+    const { name, value } = e.target;
+    setPopupFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handlePopupSubmit = async (e) => {
+    e.preventDefault();
+    setPopupIsSubmitting(true);
+
+    const isConfigured = 
+      EMAILJS_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID' &&
+      EMAILJS_CONFIG.TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
+      EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+
+    if (isConfigured) {
+      try {
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+        
+        const templateParams = {
+          to_email: RECEIVER_EMAIL,
+          from_name: popupFormData.name,
+          phone: popupFormData.phone,
+          zalo: popupFormData.zalo || 'Không có',
+          site_name: site.name,
+          date: new Date().toLocaleString('vi-VN'),
+          message: `Thông tin đăng ký tư vấn:\n\nHọ tên: ${popupFormData.name}\nSố điện thoại: ${popupFormData.phone}\nZalo: ${popupFormData.zalo || 'Không có'}\nWebsite: ${site.name}\nThời gian: ${new Date().toLocaleString('vi-VN')}`
+        };
+
+        await emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID,
+          templateParams
+        );
+
+        setPopupIsSubmitted(true);
+        setPopupIsSubmitting(false);
+        setPopupFormData({ name: '', phone: '', zalo: '' });
+
+        if (window.fbq) {
+          window.fbq('track', 'Lead');
+        }
+
+        setTimeout(() => {
+          setPopupIsSubmitted(false);
+          setShowPopup(false);
+        }, 3000);
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        setPopupIsSubmitting(false);
+        alert('Có lỗi xảy ra khi gửi email. Vui lòng thử lại!');
+      }
+    } else {
+      const subject = encodeURIComponent(`Đăng ký tư vấn từ ${site.name}`);
+      const body = encodeURIComponent(
+        `Thông tin đăng ký tư vấn:\n\n` +
+        `Họ tên: ${popupFormData.name}\n` +
+        `Số điện thoại: ${popupFormData.phone}\n` +
+        `Zalo: ${popupFormData.zalo}\n\n` +
+        `Thời gian: ${new Date().toLocaleString('vi-VN')}`
+      );
+      
+      const mailtoLink = `mailto:${RECEIVER_EMAIL}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+
+      setTimeout(() => {
+        setPopupIsSubmitted(true);
+        setPopupIsSubmitting(false);
+        setPopupFormData({ name: '', phone: '', zalo: '' });
+        setTimeout(() => {
+          setPopupIsSubmitted(false);
+          setShowPopup(false);
+        }, 3000);
+      }, 500);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -557,6 +649,91 @@ function App() {
       >
         <SiZalo />
       </a>
+
+      {/* Popup Form */}
+      {showPopup && (
+        <div className="popup-overlay" onClick={() => setShowPopup(false)}>
+          <div className="popup-container" onClick={(e) => e.stopPropagation()}>
+            <button className="popup-close" onClick={() => setShowPopup(false)}>×</button>
+
+            {popupIsSubmitted ? (
+              <div className="popup-success">
+                <FaCheck className="success-icon" />
+                <h3>Cảm ơn bạn đã đăng ký!</h3>
+                <p>Chúng tôi sẽ liên hệ ngay khi nhận được thông tin.</p>
+              </div>
+            ) : (
+              <div className="popup-content">
+                <div className="popup-header">
+                  <p className="popup-kicker">Ưu đãi giới hạn</p>
+                  <h2>Khắc dấu tròn chỉ <span>500K</span></h2>
+                  <ul>
+                    <li>Lấy dấu trong 30 phút</li>
+                    <li>Giao tận nơi + bảo hành mực 12 tháng</li>
+                    <li>Miễn phí chỉnh sửa nội dung</li>
+                  </ul>
+                </div>
+
+                <form onSubmit={handlePopupSubmit} className="popup-form">
+                  <div className="form-group">
+                    <label htmlFor="popup-name">
+                      <FaUser className="input-icon" />
+                      Họ và tên *
+                    </label>
+                    <input
+                      type="text"
+                      id="popup-name"
+                      name="name"
+                      value={popupFormData.name}
+                      onChange={handlePopupInputChange}
+                      placeholder="Nhập họ và tên"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="popup-phone">
+                      <FaPhone className="input-icon" />
+                      Số điện thoại *
+                    </label>
+                    <input
+                      type="tel"
+                      id="popup-phone"
+                      name="phone"
+                      value={popupFormData.phone}
+                      onChange={handlePopupInputChange}
+                      placeholder="Nhập số điện thoại"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="popup-zalo">
+                      <SiZalo className="input-icon" />
+                      Số Zalo
+                    </label>
+                    <input
+                      type="text"
+                      id="popup-zalo"
+                      name="zalo"
+                      value={popupFormData.zalo}
+                      onChange={handlePopupInputChange}
+                      placeholder="Nhập số Zalo (nếu có)"
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="popup-submit-btn"
+                    disabled={popupIsSubmitting}
+                  >
+                    {popupIsSubmitting ? 'Đang gửi...' : 'ĐĂNG KÝ NGAY'}
+                  </button>
+                  <p className="popup-footnote">Chúng tôi cam kết bảo mật thông tin khách hàng.</p>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </HelmetProvider>
   );
 }
